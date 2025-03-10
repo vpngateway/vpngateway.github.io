@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://vpngateway.github.io/news/article-70890.htm" />
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>网络协议之:socket协议详解之Socket和Stream Socket</title>
+		<meta name="description" content="目录  简介 Socket是什么 Stream Socket  使用socat创建一个TCP服务器 使用ss检查TCP连接 使用nc连接socket   总结    不管是在普通的网络编程中还是在ne" />
+	
+    <meta name="author" content="VPN网关 VPN免费节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngateway.github.io/news/article-70890.htm" />
+    <meta property="og:site_name" content="VPN网关 VPN免费节点订阅官网" />
+    <meta property="og:title" content="网络协议之:socket协议详解之Socket和Stream Socket" />
+    <meta property="og:image" content="https://vpngateway.github.io/uploads/20240323/6e0666170b743f277ea390817dbb58e7.webp" />
+        <meta property="og:release_date" content="2025-03-10T04:36:33" />
+    <meta property="og:updated_time" content="2025-03-10T04:36:33" />
+        <meta property="og:description" content="目录  简介 Socket是什么 Stream Socket  使用socat创建一个TCP服务器 使用ss检查TCP连接 使用nc连接socket   总结    不管是在普通的网络编程中还是在ne" />
+        
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/bootstrap.min.css">
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/style.css">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/responsive.css">
+	<!-- favicon -->
+	<link rel="icon" href="/assets/website/img/clashnodesfree/favicon.ico" type="image/x-icon"/>
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/jquery.mCustomScrollbar.min.css">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="网络协议之:socket协议详解之Socket和Stream Socket">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-516RBJER8X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-516RBJER8X');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header section start -->
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="logo">
+                                        <a href="/">VPN网关</a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- header section end -->
+    <!-- about sectuion start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="breadcrumb">
+              <a href="/">首页</a> / 
+              <a href="/news/">新闻资讯</a> / 
+              <span>正文</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="services_taital mb-5">网络协议之:socket协议详解之Socket和Stream Socket</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#%E7%AE%80%E4%BB%8B" rel="nofollow">简介</a></li> <li><a href="#socket%E6%98%AF%E4%BB%80%E4%B9%88" rel="nofollow">Socket是什么</a></li> <li><a href="#stream-socket" rel="nofollow">Stream Socket</a> <ul> <li><a href="#%E4%BD%BF%E7%94%A8socat%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAtcp%E6%9C%8D%E5%8A%A1%E5%99%A8" rel="nofollow">使用socat创建一个TCP服务器</a></li> <li><a href="#%E4%BD%BF%E7%94%A8ss%E6%A3%80%E6%9F%A5tcp%E8%BF%9E%E6%8E%A5" rel="nofollow">使用ss检查TCP连接</a></li> <li><a href="#%E4%BD%BF%E7%94%A8nc%E8%BF%9E%E6%8E%A5socket" rel="nofollow">使用nc连接socket</a></li> </ul> </li> <li><a href="#%E6%80%BB%E7%BB%93" rel="nofollow">总结</a></li> </ul> </div> </h1> <p>不管是在普通的网络编程中还是在netty中，都经常会提到一个词叫做socket，好像socket是一个神奇的东西，使用socket我们可以建立客户端到服务器端的连接，并且和进行客户端和服务器端的通讯，那么socket到底是什么呢？它有哪些分类呢？一起来看看吧。</p> </h1> <p>socket的中文翻译是套接字，个人觉的这个翻译真的是太差劲了，套接字听起来毫无意义，所以很多人在第一次听到socket这个词的时候肯定很迷茫。</p> <p>那么什么是socket呢？socket是一种不同程序间进行进程通讯的方法，这些程序可以在同一个服务器上也可以在不同的服务器上。</p> <p>socket建立连接的基础是IP协议，IP协议被用来进行数据的封装和分组，然后才能够在网络上进行传输。这种依赖于IP协议的socket，又叫做network socket。</p> <p>通过network socket可以建立客户端和服务器端的连接，客户端和服务器端是通过socket address来发现对方的。</p> <p>以java为例，我们来看下SocketAddress的定义：</p> <pre><code>public abstract class SocketAddress implements java.io.Serializable {      static final long serialVersionUID = 5215720748342549866L;  }</code></pre> <p>可以看到SocketAddress只是一个笼统的定义，它可以有多种实现，它具体的实现中包含了传输协议，比如说是TCP，还是UDP，另外还需要包含一个IP地址和一个连接的端口。</p> <p>其中IP地址和端口定义了连接的对象，协议定义的是连接方式。</p> <p>基于不同的协议，可以衍生出不同的类型的sockets。比如依赖于TCP协议的叫做Stream sockets,依赖于UDP协议的叫做Datagram sockets,依赖于local files来进行数据传输的叫做Unix Domain Sockets.</p> <p>接下来我们会在一个unix系统中详细讲解这几种协议的使用。</p> <p>在讲解详细的例子之前，我们需要使用到关于网络的命令，他们是ss，nc和socat。</p> <p>在本文中，我使用的是centOS系统，所以你可以使用下面的命令进行安装：</p> <pre><code>yum install iproute2 netcat-openbsd socat</code></pre> </h1> <p>什么是Stream Socket呢？从字面上可以看出，这个Socket连接是用来进行流传输的，如果要进行流的传输，那么首先就需要建立一个稳定的网络连接，在稳定的连接方面，毫无疑问TCP(Transmission Control Protocol)是最常用也是极其高效的一种协议。</p> <p>对于Stream Socket来说，它是有向性的，数据package需要从一个地址通过网络传递到另外一个地址，同时还需要接受到对方的处理返回结果，在这个过程中通常使用的就是TCP协议。</p> <p>TCP协议能够保证数据的稳定性和有序性，TCP的数据包可以保证发送到物理网络接口的数据包顺序。 如果网络接口接收到的数据包是无序的，那么网络适配器和操作系统将确保它们以正确的顺序重新组合以供应用程序使用。</p> <p>常见的基于TCP的Stream Socket就是我们常常访问的http和https服务了，处理http和https服务的服务器一般是nginx或者apache,那么通常会有下面的Stream Socket地址：</p> <pre><code>124.225.141.53:80 124.225.141.53:443</code></pre> <p>上面我用的是网易的ip地址，其中80表示的是http，443表示的是https。</p> <h2 id="使用socat创建一个tcp服务器">使用socat创建一个TCP服务器</h2> <p>常用的TCP服务器可以选择apache或者nginx，这里为了简单起见，我们选择使用socat来创建一个TCP服务器。</p> <p>socat是什么呢？它是SOcket CAT的简称，可以用来模拟一个TCP的服务器。</p> <p>socat的命令很复杂，这里我们只是简单介绍一下它的应用：</p> <pre><code>socat -h socat by Gerhard Rieger and contributors - see www.dest-unreach.org Usage: socat [options] &lt;bi-address&gt; &lt;bi-address&gt;</code></pre> <p>从上面的结果我们可以看出，socat可以接受一些地址，然后可以添加一些选项。</p> <p>这里我们使用socat来创建两个连接，分别是TCP6和TCP4,socat有两个选项可以做这项工作：</p> <pre><code>      tcp-connect:&lt;host&gt;:&lt;port&gt; groups=FD,SOCKET,CHILD,RETRY,IP4,IP6,TCP       tcp-listen:&lt;port&gt; groups=FD,SOCKET,LISTEN,CHILD,RETRY,RANGE,IP4,IP6,TCP       tcp4-connect:&lt;host&gt;:&lt;port&gt;        groups=FD,SOCKET,CHILD,RETRY,IP4,TCP       tcp4-listen:&lt;port&gt;        groups=FD,SOCKET,LISTEN,CHILD,RETRY,RANGE,IP4,TCP       tcp6-connect:&lt;host&gt;:&lt;port&gt;        groups=FD,SOCKET,CHILD,RETRY,IP6,TCP       tcp6-listen:&lt;port&gt;        groups=FD,SOCKET,LISTEN,CHILD,RETRY,RANGE,IP6,TCP</code></pre> <p>这里我们只需要建立两个监听TCP的服务，所以我们使用下面的命令：</p> <pre><code>socat TCP4-LISTEN:8888,fork /dev/null&amp; socat TCP6-LISTEN:8888,ipv6only=1,fork /dev/null&amp;</code></pre> <p>上面的命令，我们在8888端口上监听TCP4和TCP6的连接信息，其中fork参数表示程序在接收到程序包之后继续运行，如果不用fork，那么程序会自动退出。</p> <p>socat后面本来要接一个bi-address，这里我们使用/dev/null，表示丢弃掉所有的income信息。</p> <p>TCP6-LISTEN有个特殊的参数叫做ipv6only，表示收到的数据包不要发送到IPv4-mapped IPv6 addresses。</p> <p>什么是IPv4-mapped IPv6 addresses？ 简单点说就是将IPv4映射到了IPv6的地址中。</p> <p>执行上述命令，我们会得到下面的输出：</p> <pre><code>[1] 30877 [2] 30885</code></pre> <p>因为是后台执行，所以我们返回了进程的ID。</p> <h2 id="使用ss检查tcp连接">使用ss检查TCP连接</h2> <p>ss是一个非常强大的命令，我们可以通过使用ss来监测TCP sockets的信息，它的使用情况如下：</p> <pre><code>ss -h Usage: ss [ OPTIONS ]        ss [ OPTIONS ] [ FILTER ]</code></pre> <p>我们主要看下面几个将要用到的参数：</p> <pre><code>   -4, --ipv4          display only IP version 4 sockets    -6, --ipv6          display only IP version 6 sockets    -t, --tcp           display only TCP sockets    -l, --listening     display listening sockets   -n, --numeric       don't resolve service names</code></pre> <p>因为我们只监听ipv4和ipv6的数据，所以这里我们用-4和-6这两个参数。</p> <p>另外因为只需要监听tcp sockets，所以需要使用-t参数。</p> <p>因为是监听，所以使用-l参数，最后我们希望看到具体的数字，而不是被解析成了服务名，所以这里使用-n参数。</p> <p>我们使用下面的命令看看结果：</p> <pre><code>ss -4 -tln</code></pre> <p>结果如下：</p> <pre><code>State       Recv-Q Send-Q                      Local Address:Port                                     Peer Address:Port                LISTEN      0      5                                       *:8888                                                *:*</code></pre> <p>表示监听到了端口8888， 当然如果你的服务器上有其他的进程，那么可能不止这一条数据。</p> <p>上面的命令只监听了Ipv4，我们再看看Ipv6：</p> <pre><code>ss -6 -tln</code></pre> <p>可能得到下面的输出：</p> <pre><code>ss -6 -tln State       Recv-Q Send-Q                      Local Address:Port                                     Peer Address:Port                LISTEN      0      5                                      :::8888                                               :::*</code></pre> <p>和Ipv4的很类似，表示我们在Ipv6上监听到了端口8888。</p> <h2 id="使用nc连接socket">使用nc连接socket</h2> <p>我们已经建立好了了监听TCP连接的服务器，接下来我们尝试使用nc命令来进行连接。</p> <p>nc是Ncat的简称，它是一个非常有用的网络工具，可以做很多事情。我们来看下本例子中会用到的参数：</p> <pre><code>  -4                         Use IPv4 only   -6                         Use IPv6 only   -v, --verbose              Set verbosity level (can be used several times)   -z                         Zero-I/O mode, report connection status only</code></pre> <p>因为需要连接到Ipv4和Ipv6，所以需要-4和-6参数。</p> <p>另外我们需要输出详细的信息，所以需要-v参数，最后我们直接建立连接，并不发送任何数据，所以这里使用-z参数，我们执行一下来看看效果：</p> <pre><code>nc -4 -vz 127.0.0.1 8888</code></pre> <p>看看下面的输出结果：</p> <pre><code>nc -4 -vz 127.0.0.1 8888 Ncat: Version 7.50 ( https://nmap.org/ncat ) Ncat: Connected to 127.0.0.1:8888. Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.</code></pre> <p>可以看到nc已经成功建立了连接，并且发送了0 bytes的内容。</p> <p>同样的，我们建立到Ipv6的连接：</p> <pre><code>nc -6 -vz ::1 8888</code></pre> <p>这里的 ::1表示的是Ipv6的本地地址。输出结果如下：</p> <pre><code>Ncat: Version 7.50 ( https://nmap.org/ncat ) Ncat: Connected to ::1:8888. Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.</code></pre> </h1> <p>到此，我们介绍了Socket的基本分类Stream Socket的含义，并且使用unix中的工具搭建了socket服务器和客户端，当然这只是最简单的说明描述,大家用来体会Stream Socket的流程即可。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-70259.htm">中国餐桌上的四大下酒菜是什么?（怎么可以错过）中华四大下酒菜，红高粱剧情，食功夫之美食大冒险，</a></p>
+                                        <p>下一个：<a href="/news/article-70891.htm">动物医院诊疗许可证办理流程图片大全视频（动物医院诊疗程序）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70258.htm" title="动物疫苗接种方法及注意事项有哪些 动物疫苗接种方法及注意事项有哪些呢">动物疫苗接种方法及注意事项有哪些 动物疫苗接种方法及注意事项有哪些呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-v2ray.htm" title="VPN网关 | 3月10日19.3M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点">VPN网关 | 3月10日19.3M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-69974.htm" title="宠物领养数据库设计图片（宠物领养数据库设计图片）">宠物领养数据库设计图片（宠物领养数据库设计图片）</a></li>
+                        <li class="py-2"><a href="/news/article-70891.htm" title="动物医院诊疗许可证办理流程图片大全视频（动物医院诊疗程序）">动物医院诊疗许可证办理流程图片大全视频（动物医院诊疗程序）</a></li>
+                        <li class="py-2"><a href="/news/article-70890.htm" title="网络协议之:socket协议详解之Socket和Stream Socket">网络协议之:socket协议详解之Socket和Stream Socket</a></li>
+                        <li class="py-2"><a href="/news/article-70259.htm" title="中国餐桌上的四大下酒菜是什么?（怎么可以错过）中华四大下酒菜，红高粱剧情，食功夫之美食大冒险，">中国餐桌上的四大下酒菜是什么?（怎么可以错过）中华四大下酒菜，红高粱剧情，食功夫之美食大冒险，</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-node-share.htm" title="VPN网关 | 3月8日20.9M/S|免费SSR/Shadowrocket/V2ray/Clash订阅节点分享">VPN网关 | 3月8日20.9M/S|免费SSR/Shadowrocket/V2ray/Clash订阅节点分享</a></li>
+                        <li class="py-2"><a href="/news/article-69975.htm" title="济南宠物领养群（济南领养动物）">济南宠物领养群（济南领养动物）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-9-node-share-links.htm" title="VPN网关 | 3月9日18.1M/S|免费SSR/V2ray/Shadowrocket/Clash订阅节点">VPN网关 | 3月9日18.1M/S|免费SSR/V2ray/Shadowrocket/Clash订阅节点</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about sectuion end -->
+        <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="copyright_text">
+                            VPN网关 VPN免费节点订阅官网 版权所有
+                            <br />
+                            Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery-3.0.0.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/plugin.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
