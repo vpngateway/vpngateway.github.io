@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://vpngateway.github.io/news/article-72880.htm" />
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Docker极简入门：使用Docker-Compose 搭建redis集群</title>
+		<meta name="description" content="为了构建一个集群，我们首先要让 redis 启用集群模式 一个简单的配置文件如下redis.conf # redis.conf file port 6379 cluster-enabled yes c" />
+	
+    <meta name="author" content="VPN网关 VPN免费节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngateway.github.io/news/article-72880.htm" />
+    <meta property="og:site_name" content="VPN网关 VPN免费节点订阅官网" />
+    <meta property="og:title" content="Docker极简入门：使用Docker-Compose 搭建redis集群" />
+    <meta property="og:image" content="https://vpngateway.github.io/uploads/20240323/d3933e448d10217e26c64fd907d4d3a2.webp" />
+        <meta property="og:release_date" content="2025-03-13T09:21:42" />
+    <meta property="og:updated_time" content="2025-03-13T09:21:42" />
+        <meta property="og:description" content="为了构建一个集群，我们首先要让 redis 启用集群模式 一个简单的配置文件如下redis.conf # redis.conf file port 6379 cluster-enabled yes c" />
+        
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/bootstrap.min.css">
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/style.css">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/responsive.css">
+	<!-- favicon -->
+	<link rel="icon" href="/assets/website/img/clashnodesfree/favicon.ico" type="image/x-icon"/>
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/jquery.mCustomScrollbar.min.css">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Docker极简入门：使用Docker-Compose 搭建redis集群">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-516RBJER8X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-516RBJER8X');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header section start -->
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="logo">
+                                        <a href="/">VPN网关</a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- header section end -->
+    <!-- about sectuion start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="breadcrumb">
+              <a href="/">首页</a> / 
+              <a href="/news/">新闻资讯</a> / 
+              <span>正文</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="services_taital mb-5">Docker极简入门：使用Docker-Compose 搭建redis集群</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                  				  				  				<p>为了构建一个集群，我们首先要让 redis 启用集群模式<br /> 一个简单的配置文件如下<code>redis.conf</code></p> <pre><code class="language-shell"># redis.conf file port 6379 cluster-enabled yes cluster-config-file nodes.conf cluster-node-timeout 5000 appendonly yes</code></pre> <p>因为是在单机上演示，所以我们得修改 port 防止冲突<br /> 比如我们要创建3主5副的集群，那么这八个 redis 实例启动的时候就应该用不同的端口(7000,7001...7007)，这样能防止冲突。</p> <pre><code class="language-shell">. ├── 7000 │   └── redis.conf ├── 7001 │   └── redis.conf ├── 7002 │   └── redis.conf ├── 7003 │   └── redis.conf ├── 7004 │   └── redis.conf ├── 7005 │   └── redis.conf ├── 7006 │   └── redis.conf ├── 7007 │   └── redis.conf</code></pre> <p><code>./7000/redis.conf</code> 中的 port 设置成7000,依此类推<code>./7007/redis.conf</code>中的 port 应该设置成7007</p> <p>万事俱备，只需运行<code>redis-server ./redis.conf</code>命令即可，当然你需要依次启动八个 redis server</p> <pre><code class="language-shell">for i in `seq 7000 7007`; do 	exec redis-server ./${i}/redis.conf &amp; done  redis-cli --cluster create\ 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003\ 127.0.0.1:7004 127.0.0.1:7005 127.0.0.1:7006 127.0.0.1:7007\ --cluster-replicas 1</code></pre> <p>这样整个集群就搭建好了，你可以选择运行在 port 7000-7007中的任意一个 servr 登录，然后去执行一些你喜欢的命令验证一下[狗头]</p> <h2 id="使用docker-compose构建集群">使用Docker-Compose构建集群</h2> <p>现在让我们来明确一下流程，首先我们需要启动八个 redis server 实例，然后运行<code>redis-cli --cluster create</code> 命令创建集群，这意味着我们需要创建一个 docker network 使得集群成员能够互相通讯</p> <p>创建一个 network 也很简单</p> <pre><code class="language-shell">networks:   redis-network:     name: redis-network     ## 使用网桥     driver: bridge     ipam:       driver: default       ## 指定网段，需要注意不能与已有的 docker network 相冲突       config:         - subnet: 172.18.0.0/24</code></pre> <p>还记得之前命令行是如何启动集群的吗？最后需要运行命令<code>redis-cli --cluster create</code>，整个集群才算成功创建，那在 yml 文件中该怎么写呢？<br /> 我们可以借助<code>depends_on</code>来告诉 docker 当前的 service 依赖其他的 service<br /> 具体的细节请看完整的yml文件</p> <pre><code class="language-shell">## redis.conf port 6379 cluster-enabled yes cluster-config-file nodes-redis.conf cluster-node-timeout 5000 appendonly yes appendfilename "appendonly-redis.aof"</code></pre> <pre><code class="language-yaml">version: "3.7"  networks:   redis-network:     name: redis-network     driver: bridge     ipam:       driver: default       config:         - subnet: 172.18.0.0/24  services:   redis-cluster:     image: redis:6-alpine     command: 'redis-cli --cluster create      172.18.0.11:6379 172.18.0.12:6379 172.18.0.13:6379 172.18.0.14:6379      172.18.0.15:6379 172.18.0.16:6379 172.18.0.17:6379 172.18.0.18:6379     --cluster-yes --cluster-replicas 1'     networks:       - redis-network     depends_on:       - redis1       - redis2       - redis3       - redis4       - redis5       - redis6       - redis7       - redis8    redis1:     image: redis:6-alpine     container_name: redis1     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.11     expose:       - 6379     volumes:       - $PWD/docker-data/redis1:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf    redis2:     image: redis:6-alpine     container_name: redis2     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.12     expose:       - 6379     volumes:       - $PWD/docker-data/redis2:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf    redis3:     image: redis:6-alpine     container_name: redis3     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.13     expose:       - 6379     volumes:       - $PWD/docker-data/redis3:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf    redis4:     image: redis:6-alpine     container_name: redis4     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.14     expose:       - 6379     volumes:       - $PWD/docker-data/redis4:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf          redis5:     image: redis:6-alpine     container_name: redis5     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.15     expose:       - 6379     volumes:       - $PWD/docker-data/redis5:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf          redis6:     image: redis:6-alpine     container_name: redis6     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.16     expose:       - 6379     volumes:       - $PWD/docker-data/redis6:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf                redis7:     image: redis:6-alpine     container_name: redis7     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.17     expose:       - 6379     volumes:       - $PWD/docker-data/redis7:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf          redis8:     image: redis:6-alpine     container_name: redis8     command: redis-server /usr/local/etc/redis/redis.conf     networks:       redis-network:         ipv4_address: 172.18.0.18     expose:       - 6379     volumes:       - $PWD/docker-data/redis8:/data       - $PWD/docker-config/redis.conf:/usr/local/etc/redis/redis.conf</code></pre> <p>最后不要忘记了最基本的命令</p> <pre><code class="language-shell">sudo docker-compose up # 在当前命令下运行，启动集群 sudo docker-compose down # 关闭集群的同时会将 docker-network也一并删除</code></pre> <h3 id="如何与集群通信">如何与集群通信</h3> <pre><code class="language-shell"># 登录任意一个节点执行命令即可，集群会根据key的哈希值，将你的命令重定位 sudo docker exec -it redis5 redis-cli -p 6379 set foo bar</code></pre> <pre><code class="language-shell">sudo docker exec -it redis1 redis-cli -p 6379 get foo # output bar</code></pre> <h3 id="参考">参考</h3> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://university.redis.com/courses/ru301/"  target="_blank" rel="nofollow">reids官网 course</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-72218.htm">农大动物医院几点关门 农大动物医院几点关门营业</a></p>
+                                        <p>下一个：<a href="/news/article-72881.htm">动物疫苗哪个好 动物疫苗品牌</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70258.htm" title="动物疫苗接种方法及注意事项有哪些 动物疫苗接种方法及注意事项有哪些呢">动物疫苗接种方法及注意事项有哪些 动物疫苗接种方法及注意事项有哪些呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-v2ray.htm" title="VPN网关 | 3月10日19.3M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点">VPN网关 | 3月10日19.3M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-71558.htm" title="宠物粮代理怎么拿（宠物粮代理加盟）">宠物粮代理怎么拿（宠物粮代理加盟）</a></li>
+                        <li class="py-2"><a href="/news/article-72880.htm" title="Docker极简入门：使用Docker-Compose 搭建redis集群">Docker极简入门：使用Docker-Compose 搭建redis集群</a></li>
+                        <li class="py-2"><a href="/news/article-71559.htm" title="动物疫苗间隔时间多久打一次好（动物疫苗的使用方法及注意事项）">动物疫苗间隔时间多久打一次好（动物疫苗的使用方法及注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-72217.htm" title="动物接种疫苗后多久产生抗体?（动物疫苗间隔时间）">动物接种疫苗后多久产生抗体?（动物疫苗间隔时间）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-node-share.htm" title="VPN网关 | 3月8日20.9M/S|免费SSR/Shadowrocket/V2ray/Clash订阅节点分享">VPN网关 | 3月8日20.9M/S|免费SSR/Shadowrocket/V2ray/Clash订阅节点分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-clash-v2ray-ss-ssr.htm" title="VPN网关 | 3月13日22.6M/S|免费Shadowrocket/V2ray/Clash/SSR订阅节点">VPN网关 | 3月13日22.6M/S|免费Shadowrocket/V2ray/Clash/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-69975.htm" title="济南宠物领养群（济南领养动物）">济南宠物领养群（济南领养动物）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-free-node-subscribe-links.htm" title="VPN网关 | 3月12日19.3M/S|免费Clash/Shadowrocket/SSR/V2ray订阅节点">VPN网关 | 3月12日19.3M/S|免费Clash/Shadowrocket/SSR/V2ray订阅节点</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about sectuion end -->
+        <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="copyright_text">
+                            VPN网关 VPN免费节点订阅官网 版权所有
+                            <br />
+                            Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery-3.0.0.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/plugin.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
