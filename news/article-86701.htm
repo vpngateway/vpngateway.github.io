@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://vpngateway.github.io/news/article-86701.htm" />
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Android Studio之菜单栏制作</title>
+		<meta name="description" content="静态菜单栏XML文件准备工作 一、准备好布局首页展示页面XML文件 该布局文件适应于三种菜单栏。 此处说明一下菜单栏的种类：选项菜单（也称三点菜单键）、上下文菜单（长按菜单）、弹出式菜单（点击菜单） " />
+	
+    <meta name="author" content="VPN网关 VPN免费节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngateway.github.io/news/article-86701.htm" />
+    <meta property="og:site_name" content="VPN网关 VPN免费节点订阅官网" />
+    <meta property="og:title" content="Android Studio之菜单栏制作" />
+    <meta property="og:image" content="https://vpngateway.github.io/uploads/20240323/d3933e448d10217e26c64fd907d4d3a2.webp" />
+        <meta property="og:release_date" content="2025-04-02T07:44:11" />
+    <meta property="og:updated_time" content="2025-04-02T07:44:11" />
+        <meta property="og:description" content="静态菜单栏XML文件准备工作 一、准备好布局首页展示页面XML文件 该布局文件适应于三种菜单栏。 此处说明一下菜单栏的种类：选项菜单（也称三点菜单键）、上下文菜单（长按菜单）、弹出式菜单（点击菜单） " />
+        
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/bootstrap.min.css">
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/style.css">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/responsive.css">
+	<!-- favicon -->
+	<link rel="icon" href="/assets/website/img/clashnodesfree/favicon.ico" type="image/x-icon"/>
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/jquery.mCustomScrollbar.min.css">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Android Studio之菜单栏制作">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-516RBJER8X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-516RBJER8X');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header section start -->
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="logo">
+                                        <a href="/">VPN网关</a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- header section end -->
+    <!-- about sectuion start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="breadcrumb">
+              <a href="/">首页</a> / 
+              <a href="/news/">新闻资讯</a> / 
+              <span>正文</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="services_taital mb-5">Android Studio之菜单栏制作</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> </h1> <h3> <a id="XML_4" rel="nofollow"></a>静态菜单栏XML文件准备工作</h3> <p>一、准备好布局首页展示页面XML文件</p> <p>该布局文件适应于三种菜单栏。</p> <p>此处说明一下菜单栏的种类：选项菜单（也称三点菜单键）、上下文菜单（长按菜单）、弹出式菜单（点击菜单）</p> <p>代码如下：</p> <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"     xmlns:app="http://schemas.android.com/apk/res-auto"     xmlns:tools="http://schemas.android.com/tools"     android:layout_width="match_parent"     android:layout_height="match_parent"     tools:context=".MainActivity"&gt;      &lt;TextView         android:id="@+id/textView"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="山有木兮木有枝，心悦君兮君不知"         app:layout_constraintBottom_toBottomOf="parent"         app:layout_constraintLeft_toLeftOf="parent"         app:layout_constraintRight_toRightOf="parent"         app:layout_constraintTop_toTopOf="parent"         app:layout_constraintVertical_bias="0.242" /&gt;      &lt;Button         android:id="@+id/button"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="选项一"         app:layout_constraintBottom_toBottomOf="parent"         app:layout_constraintEnd_toEndOf="parent"         app:layout_constraintHorizontal_bias="0.69"         app:layout_constraintStart_toStartOf="parent"         app:layout_constraintTop_toBottomOf="@+id/textView"         app:layout_constraintVertical_bias="0.254" /&gt;      &lt;Button         android:id="@+id/button2"         android:layout_width="wrap_content"         android:layout_height="wrap_content"         android:text="选项二"         app:layout_constraintBottom_toBottomOf="parent"         app:layout_constraintEnd_toEndOf="parent"         app:layout_constraintHorizontal_bias="0.309"         app:layout_constraintStart_toStartOf="parent"         app:layout_constraintTop_toBottomOf="@+id/textView"         app:layout_constraintVertical_bias="0.252" /&gt;  &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt; </code></pre> <p>二、准备好菜单栏的布局文件</p> <p>1、先建一个存放菜单栏的XML文件夹，看下图的创建步骤，先找到res-&gt;New-&gt;Directory</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/1a78dda2ff3686258022c70bc446ceaa.jpg" alt="Android Studio之菜单栏制作"></p> <p>2、填写文件夹的名字，最好看名知意。（menu）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/1cea12aac8f59ea794767f51ad3bc007.jpg" alt="Android Studio之菜单栏制作"></p> <p>3、创建一个menu的资源文件，menu -&gt; New -&gt; Menu Resource File</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/4ad4b96b8579c61cd919e7d4cd9594a5.jpg" alt="Android Studio之菜单栏制作"></p> <p>4、填写新建的资源文件的名字</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/fb58745f1322b51aeb2a0e15c2ba36a7.jpg" alt="Android Studio之菜单栏制作"></p> <p>这里我创建了两个菜单资源文件：</p> <p>代码如下：</p> <p>menu1：</p> <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;menu xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width="match_parent"     android:layout_height="match_parent"&gt;     &lt;item android:id="@+id/one1"         android:title="菜单一"&gt;&lt;/item&gt;     &lt;item android:id="@+id/one2"         android:title="菜单二"&gt;&lt;/item&gt;     &lt;item android:id="@+id/one3"         android:title="菜单三"&gt;&lt;/item&gt;     &lt;item android:id="@+id/one4"         android:title="菜单四"&gt;&lt;/item&gt;  &lt;/menu&gt; </code></pre> <p>menu2：</p> <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;menu xmlns:android="http://schemas.android.com/apk/res/android"     android:layout_width = "match_parent"     android:layout_height = "match_parent"&gt;     &lt;item android:id="@+id/bu1"         android:title="选项一"&gt;&lt;/item&gt;     &lt;item android:id="@+id/bu2"         android:title="选项一"&gt;&lt;/item&gt;     &lt;item android:id="@+id/bu3"         android:title="选项一"&gt;&lt;/item&gt;  &lt;/menu&gt; </code></pre> <p>准备好之后，下面开始写Java代码。</p> <h3> <a id="_134" rel="nofollow"></a>选项菜单</h3> <p>1、定义所需要的全局变量</p> <p>2、在函数onCreate(Bundle savedInstanceState)函数里获取上面定义的全局变量的资源</p> <p>上面两步是必写的，下面的步骤不介绍了。</p> <p>3、重写Activity的onCreateOptionsMenu(Menu menu)方法，在该方法中调用Menu对象来添加菜单或者子菜单。</p> <p>4、需要应用程序响应菜单项的点击事件，可重写Activity的onOptionsItemSelected(MenuItem item)方法，调用item.getItemId()获得被点击菜单项的ID，做出不同的响应</p> <p>java代码：</p> <pre><code>package com.example.myapplication;  import androidx.appcompat.app.AppCompatActivity;  import android.os.Bundle; import android.view.Menu; import android.view.MenuInflater; import android.view.MenuItem; import android.widget.Button; import android.widget.TextView; import android.widget.Toast;  public class MainActivity extends AppCompatActivity {     //定义按钮的全局变量     private Button button;     private TextView textView;      @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         // 绑定按钮的资源（利用id找到xml文件中的按钮）         button = findViewById(R.id.button);         textView = findViewById(R.id.textView);     }      @Override//重写获取菜单项的方法     public boolean onCreateOptionsMenu(Menu menu) {         MenuInflater inflater=getMenuInflater();//获取菜单Inflater,MenuInflater加载menu布局文件         inflater.inflate(R.menu.menu1,menu);//通过inflate获取菜单资源         return true;     }     @Override//菜单项被点击时的逻辑处理     public boolean onOptionsItemSelected(MenuItem item) {         switch (item.getItemId()){             case R.id.one1:                 Toast.makeText(MainActivity.this,"我是一",Toast.LENGTH_LONG).show();                 break;             case R.id.one2:                 Toast.makeText(MainActivity.this,"我是二",Toast.LENGTH_LONG).show();                 break;             case R.id.one3:                 Toast.makeText(MainActivity.this,"我是三",Toast.LENGTH_LONG).show();                 break;             case R.id.one4:                 Toast.makeText(MainActivity.this,"我是四",Toast.LENGTH_LONG).show();                 break;             default:                 return true;         }         return true;     }  } </code></pre> <p>效果图如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/bdff59cea4673b253c71dc1f1e3d11ba.jpg" alt="Android Studio之菜单栏制作"></p> <h3> <a id="_212" rel="nofollow"></a>上下文菜单</h3> <p>1、重写Activity的onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)方法。</p> <p>2、调用Activity的registerForContextMenu(textView)方法为View组件注册上下文菜单</p> <p>2、重写Activity的onContextItemSelected(MenuItem item)响应菜单项的选择操作，调用item.getItemId()获得被点击菜单项的ID，做出不同的响应</p> <pre><code>package com.example.myapplication;  import androidx.appcompat.app.AppCompatActivity;  import android.os.Bundle; import android.view.ContextMenu; import android.view.Menu; import android.view.MenuInflater; import android.view.MenuItem; import android.view.SubMenu; import android.view.View; import android.widget.Button; import android.widget.TextView; import android.widget.Toast;  public class MainActivity extends AppCompatActivity {     //定义按钮的全局变量     private Button button;     private TextView textView;      @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         // 绑定按钮的资源（利用id找到xml文件中的按钮）         button = findViewById(R.id.button);         textView = findViewById(R.id.textView);         //为组件注册上下文菜单         registerForContextMenu(textView);     }  	//重写Activity的onCreateContextMenu()     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){         switch (v.getId()){             case R.id.textView:                 menu.setHeaderTitle("分享到，，，");                 menu.add(0,200,0,"qq空间");                 menu.add(0,201,0,"朋友圈");                 SubMenu submenu = menu.addSubMenu(0,200,0,"微博");                 submenu.add(0,202,0,"新浪");                 submenu.add(0,203,0,"新浪");                 submenu.add(0,204,0,"新浪");             default:                 break;         }         super.onCreateContextMenu(menu,v,menuInfo);     }          //重写Activity的onContextItemSelected()     public boolean onContextItemSelected(MenuItem item){         switch (item.getItemId()){             case 200:                 Toast.makeText(MainActivity.this,"你选了一",Toast.LENGTH_LONG).show();                 break;             case 201:                 Toast.makeText(MainActivity.this,"你选了二",Toast.LENGTH_LONG).show();                 break;             case 203:                 Toast.makeText(MainActivity.this,"你选了三",Toast.LENGTH_LONG).show();                 break;             case 204:                 Toast.makeText(MainActivity.this,"你选了四",Toast.LENGTH_LONG).show();                 break;             default:                 return super.onOptionsItemSelected(item);         }         return true;     }  } </code></pre> <p>效果图如下：（长按哦！）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/7e35cee216ce56e7043a0fb39040bb45.jpg" alt="Android Studio之菜单栏制作"></p> <h3> <a id="_302" rel="nofollow"></a>弹出式菜单</h3> <p>1、调用new PopupMenu(Context context,View anchor)创建下拉菜单，anchor代表要激发该弹出菜单的组件</p> <p>2、调用MenuInflater的inflate()方法将菜单资源填充到PopupMenu中</p> <p>turn super.onOptionsItemSelected(item);<br /> }<br /> return true;<br /> }</p> <p>}</p> <h3> <a id="_315" rel="nofollow"></a>弹出式菜单</h3> <p>1、调用new PopupMenu(Context context,View anchor)创建下拉菜单，anchor代表要激发该弹出菜单的组件</p> <p>2、调用MenuInflater的inflate()方法将菜单资源填充到PopupMenu中</p> <p>3、调用PopupMenu的show()方法显示弹出式菜单</p> <pre><code>   package com.example.myapplication;     import androidx.annotation.RequiresApi;    import androidx.appcompat.app.AppCompatActivity;    import androidx.appcompat.view.menu.MenuPopupHelper;     import android.annotation.SuppressLint;    import android.os.Build;    import android.os.Bundle;    import android.view.ContextMenu;    import android.view.Menu;     import android.view.MenuInflater;    import android.view.MenuItem;    import android.view.SubMenu;     import android.view.View;    import android.widget.Button;    import android.widget.PopupMenu;    import android.widget.TextView;    import android.widget.Toast;    import android.widget.TextView;    import android.widget.Toast;     import java.lang.reflect.Field;    import java.lang.reflect.Method;      public class MainActivity extends AppCompatActivity {     //定义按钮的全局变量     private Button button;     private TextView textView;     @Override     protected void onCreate(Bundle savedInstanceState) {         super.onCreate(savedInstanceState);         setContentView(R.layout.activity_main);         // 绑定按钮的资源（利用id找到xml文件中的按钮）         button = findViewById(R.id.button);         textView = findViewById(R.id.textView);         registerForContextMenu(textView);          button.setOnClickListener(new View.OnClickListener() {             @SuppressLint("RestrictedApi")             @RequiresApi(api = Build.VERSION_CODES.KITKAT)             @Override             public void onClick(View v) {                 //创建PopupMenu                 PopupMenu popupMenu = new PopupMenu(MainActivity.this,button);                 //加载菜单资源                 popupMenu.getMenuInflater().inflate(R.menu.menu2, popupMenu.getMenu());                 //菜单事件监听                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){                      @Override                     public boolean onMenuItemClick(MenuItem item) {                         switch (item.getItemId()){                             case R.id.bu1:                                 Toast.makeText(MainActivity.this,"复制",Toast.LENGTH_LONG).show();                                 break;                             case R.id.bu2:                                 Toast.makeText(MainActivity.this,"粘贴",Toast.LENGTH_LONG).show();                                 break;                             case R.id.bu3:                                 Toast.makeText(MainActivity.this,"清除",Toast.LENGTH_LONG).show();                                 break;                             default:                                 break;                         }                         return true;                     }                 });                 //使用反射，强制显示菜单图标              	try {                 	Field field = popupMenu.getClass().getDeclaredField("mm");                	 	field.setAccessible(true);                 	MenuPopupHelper menuPopupHelper = (MenuPopupHelper) field.get(popupMenu);                	 	menuPopupHelper.setForceShowIcon(true);                }catch (IllegalAccessException | NoSuchFieldException e){                 	e.printStackTrace();             }                 popupMenu.show();             }         });      }  } </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/bc959573ad4cd9fa08688ff7fc61d5a9.jpg" alt="Android Studio之菜单栏制作"></p> <p>///<br /> ///<br /> ///</p> <h6> <a id="Java_AltEnter_432" rel="nofollow"></a>关于Java代码有很多包名，如果有哪个方法没有找到什么包可以 “Alt+Enter”快捷键帮你找到这个地方的可能需要要导入的包或者其他。</h6> <h6> <a id="_433" rel="nofollow"></a>整个代码的引入是从第一个写到最后一个菜单的累加的。</h6> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-85992.htm">动物疫苗法律法规有哪些要求 动物疫苗法律法规有哪些要求呢</a></p>
+                                        <p>下一个：<a href="/news/article-86702.htm">动物医院主管部门是谁负责（动物医院监管部门）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70890.htm" title="网络协议之:socket协议详解之Socket和Stream Socket">网络协议之:socket协议详解之Socket和Stream Socket</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-free-node-subscribe.htm" title="VPN网关 | 3月30日22.9M/S|免费Clash/Shadowrocket/V2ray/SSR订阅节点">VPN网关 | 3月30日22.9M/S|免费Clash/Shadowrocket/V2ray/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-78292.htm" title="宠物猫疫苗多少钱一个针头（宠物猫接种疫苗多少钱）">宠物猫疫苗多少钱一个针头（宠物猫接种疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-76220.htm" title="python中脚本怎么执行sql语句？">python中脚本怎么执行sql语句？</a></li>
+                        <li class="py-2"><a href="/news/article-77585.htm" title="宠物医院收费价目表猫癣（宠物医院治疗猫癣费用）">宠物医院收费价目表猫癣（宠物医院治疗猫癣费用）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-node-share-links.htm" title="VPN网关 | 3月16日22.7M/S|免费SSR/V2ray/Shadowrocket/Clash订阅节点">VPN网关 | 3月16日22.7M/S|免费SSR/V2ray/Shadowrocket/Clash订阅节点</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-10-free-v2ray.htm" title="VPN网关 | 3月10日19.3M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点">VPN网关 | 3月10日19.3M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-72218.htm" title="农大动物医院几点关门 农大动物医院几点关门营业">农大动物医院几点关门 农大动物医院几点关门营业</a></li>
+                        <li class="py-2"><a href="/news/article-81045.htm" title="你确定你会用Enum枚举了？">你确定你会用Enum枚举了？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-subscribe-node.htm" title="VPN网关 | 3月19日22.7M/S|免费V2ray/SSR/Shadowrocket/Clash订阅节点">VPN网关 | 3月19日22.7M/S|免费V2ray/SSR/Shadowrocket/Clash订阅节点</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about sectuion end -->
+        <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p class="copyright_text">
+                            VPN网关 VPN免费节点订阅官网 版权所有
+                            <br />
+                            Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery-3.0.0.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/plugin.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
