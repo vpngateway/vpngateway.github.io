@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://vpngateway.github.io/news/article-99269.htm" />
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>树的同构（java实现）</title>
+		<meta name="description" content="7-3&nbsp;树的同构（25&nbsp;分）    给定两棵树T1和T2。如果T1可以通过若干次左右孩子互换就变成T2，则我们称两棵树是“同构”的。例如图1给出的两棵树就是同构的，因为我们把其中一" />
+	
+    <meta name="author" content="VPN网关 VPN免费节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngateway.github.io/news/article-99269.htm" />
+    <meta property="og:site_name" content="VPN网关 VPN免费节点订阅官网" />
+    <meta property="og:title" content="树的同构（java实现）" />
+    <meta property="og:image" content="https://vpngateway.github.io/uploads/20240323/c8ff7aedac806fecb30cb33ee55b8cc1.webp" />
+        <meta property="og:release_date" content="2025-04-19T08:57:31" />
+    <meta property="og:updated_time" content="2025-04-19T08:57:31" />
+        <meta property="og:description" content="7-3&nbsp;树的同构（25&nbsp;分）    给定两棵树T1和T2。如果T1可以通过若干次左右孩子互换就变成T2，则我们称两棵树是“同构”的。例如图1给出的两棵树就是同构的，因为我们把其中一" />
+        
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/bootstrap.min.css">
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/style.css">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/responsive.css">
+	<!-- favicon -->
+	<link rel="icon" href="/assets/website/img/clashnodesfree/favicon.ico" type="image/x-icon"/>
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/jquery.mCustomScrollbar.min.css">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="树的同构（java实现）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-516RBJER8X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-516RBJER8X');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header section start -->
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="logo">
+                                        <a href="/">VPN网关</a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- header section end -->
+    <!-- about sectuion start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="breadcrumb">
+              <a href="/">首页</a> / 
+              <a href="/news/">新闻资讯</a> / 
+              <span>正文</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="services_taital mb-5">树的同构（java实现）</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h4 class="card-title" style="margin-top:0px;font-family:'-apple-system', 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;font-weight:500;line-height:1.1;color:rgb(41,43,44);background-color:rgb(255,255,255);">7-3&nbsp;树的同构（25&nbsp;分）</h4> <div class="problemListItem_2867x" style="color:rgb(41,43,44);font-family:'-apple-system', 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;font-size:14px;line-height:21px;background-color:rgb(255,255,255);"> <div class="problem_2tXnk"> <div class="ques-view" style="line-height:1.5;"> <p style="margin-bottom:.5em;">给定两棵树T1和T2。如果T1可以通过若干次左右孩子互换就变成T2，则我们称两棵树是“同构”的。例如图1给出的两棵树就是同构的，因为我们把其中一棵树的结点A、B、G的左右孩子互换后，就得到另外一棵树。而图2就不是同构的。</p> <p style="margin-top:.5em;margin-bottom:.5em;"> <p><center><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220722/7e8e2b5682f4764edd543d442701d2d0.jpg"></p> <p style="margin-top:.5em;margin-bottom:.5em;"> <p style="margin-top:.5em;margin-bottom:.5em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图1</p> <p style="margin-top:.5em;margin-bottom:.5em;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220722/c4697969ab98e72abdf09f707bda1885.jpg"></p> <p style="margin-top:.5em;margin-bottom:.5em;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图2</p> <p></center>现给定两棵树，请你判断它们是否是同构的。</p> <p style="margin-top:.5em;margin-bottom:.5em;"> <h3 style="margin-top:.8em;margin-bottom:.8em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;">输入格式:</h3> <p style="margin-top:.5em;margin-bottom:.5em;">输入给出2棵二叉树树的信息。对于每棵树，首先在一行中给出一个非负整数<span class="katex" style="font-size:1.21em;font-family:'KaTeX_Main', 'Times New Roman', serif;line-height:1.2;white-space:nowrap;margin-top:0px;"><span class="katex-html"><span class="strut" style="margin-top:0px;height:.68333em;"></span><span class="strut bottom" style="height:.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="font-style:italic;font-family:'KaTeX_Math';margin-top:0px;margin-right:.10903em;">N</span></span></span></span>&nbsp;(<span class="katex" style="font-size:1.21em;font-family:'KaTeX_Main', 'Times New Roman', serif;line-height:1.2;white-space:nowrap;"><span class="katex-html"><span class="strut" style="margin-top:0px;height:.64444em;"></span><span class="strut bottom" style="height:.78041em;vertical-align:-.13597em;"></span><span class="base textstyle uncramped"><span class="mrel" style="margin-top:0px;">≤</span><span class="mord mathrm" style="margin-left:.27778em;">1</span><span class="mord mathrm">0</span></span></span></span>)，即该树的结点数（此时假设结点从0到<span class="katex" style="font-size:1.21em;font-family:'KaTeX_Main', 'Times New Roman', serif;line-height:1.2;white-space:nowrap;"><span class="katex-html"><span class="strut" style="margin-top:0px;height:.68333em;"></span><span class="strut bottom" style="height:.76666em;vertical-align:-.08333em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="font-style:italic;font-family:'KaTeX_Math';margin-top:0px;margin-right:.10903em;">N</span><span class="mbin" style="margin-left:.22222em;">−</span><span class="mord mathrm" style="margin-left:.22222em;">1</span></span></span></span>编号）；随后<span class="katex" style="font-size:1.21em;font-family:'KaTeX_Main', 'Times New Roman', serif;line-height:1.2;white-space:nowrap;"><span class="katex-html"><span class="strut" style="margin-top:0px;height:.68333em;"></span><span class="strut bottom" style="height:.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="font-style:italic;font-family:'KaTeX_Math';margin-top:0px;margin-right:.10903em;">N</span></span></span></span>行，第<span class="katex" style="font-size:1.21em;font-family:'KaTeX_Main', 'Times New Roman', serif;line-height:1.2;white-space:nowrap;"><span class="katex-html"><span class="strut" style="margin-top:0px;height:.65952em;"></span><span class="strut bottom" style="height:.65952em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="font-style:italic;font-family:'KaTeX_Math';margin-top:0px;">i</span></span></span></span>行对应编号第<span class="katex" style="font-size:1.21em;font-family:'KaTeX_Main', 'Times New Roman', serif;line-height:1.2;white-space:nowrap;"><span class="katex-html"><span class="strut" style="margin-top:0px;height:.65952em;"></span><span class="strut bottom" style="height:.65952em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="font-style:italic;font-family:'KaTeX_Math';margin-top:0px;">i</span></span></span></span>个结点，给出该结点中存储的1个英文大写字母、其左孩子结点的编号、右孩子结点的编号。如果孩子结点为空，则在相应位置上给出“-”。给出的数据间用一个空格分隔。注意：题目保证每个结点中存储的字母是不同的。</p> <h3 style="margin-top:.8em;margin-bottom:.8em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;">输出格式:</h3> <p style="margin-top:.5em;margin-bottom:.5em;">如果两棵树是同构的，输出“Yes”，否则输出“No”。</p> <h3 style="margin-top:.8em;margin-bottom:.8em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;">输入样例1（对应图1）：</h3> <pre style="font-family:Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;font-size:12.6px;color:rgb(41,43,44);padding:6px 12px;border:1px solid rgb(221,221,221);background:rgb(247,247,247);"><code class="lang-in" style="font-family:'YaHei consolas Hybrid', Consolas, monospace;font-size:12px;color:rgb(51,51,51);border:none;margin:0px;background:none;">8 A 1 2 B 3 4 C 5 - D - - E 6 - G 7 - F - - H - - 8 G - 4 B 7 6 F - - A 5 1 H - - C 0 - D - - E 2 -</code></pre> <h3 style="margin-top:.8em;margin-bottom:.8em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;">输出样例1:</h3> <pre style="font-family:Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;font-size:12.6px;color:rgb(41,43,44);padding:6px 12px;border:1px solid rgb(221,221,221);background:rgb(247,247,247);"><code class="lang-out" style="font-family:'YaHei consolas Hybrid', Consolas, monospace;font-size:12px;color:rgb(51,51,51);border:none;margin:0px;background:none;">Yes</code></pre> <h3 style="margin-top:.8em;margin-bottom:.8em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;">输入样例2（对应图2）：</h3> <pre style="font-family:Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;font-size:12.6px;color:rgb(41,43,44);padding:6px 12px;border:1px solid rgb(221,221,221);background:rgb(247,247,247);"><code style="font-family:'YaHei consolas Hybrid', Consolas, monospace;font-size:12px;color:rgb(51,51,51);border:none;margin:0px;background:none;">8 B 5 7 F - - A 0 3 C 6 - H - - D - - G 4 - E 1 - 8 D 6 - B 5 - E - - H - - C 0 2 G - 3 F - - A 1 4</code></pre> <h3 style="margin-top:.8em;margin-bottom:.8em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;">输出样例2:</h3> <pre style="font-family:Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;font-size:12.6px;color:rgb(41,43,44);padding:6px 12px;border:1px solid rgb(221,221,221);background:rgb(247,247,247);"><code style="font-family:'YaHei consolas Hybrid', Consolas, monospace;font-size:12px;color:rgb(51,51,51);border:none;margin:0px;background:none;">No</code></pre> </div> </div> <div class="problemInfo_3ePwh" style="line-height:1.8;padding:9px 12px;border:1px solid rgb(245,245,245);font-size:12px;min-width:150px;margin-left:10px;background-color:rgb(245,245,245);"> <div></div> <div></div> <div></div> </div> </div> <p>思路：</p> <p>1、只在主函数中定义scanner，然后作为参数传递给读入函数。不要在读入函数中定义，因为要读两次，定义两个scanner的话，输入是一下子输进来，会出错。</p> <p>2、因为这个题目是N在10以内，如果再大一点，怎样判断‘-’是字符呢还是数字45呢？就用String来接受，然后判断str.equals("-")就可以了。一定注意String不要用==。</p> <p>3、用递归来判断树是否同构，注意分类。</p> <p>4、怎样在java中定义全局变量呢，就是把他作为Main类的public的数据域，定义在主函数外。</p> <p>5、用数组来存储对象时，你new一个数组是不会对对象进行初始化的。对每一个元素必须有new对象的操作。</p> <p></p> <pre><code class="language-java"> import java.util.Scanner;  public class Main { 	 	public static int n1=-1; 	 	 	public static void main(String[] args) { 		// TODO Auto-generated method stub 		Scanner in = new Scanner(System.in); 		Jiedian [] A = read(in); 		int root1=n1;  		 		Jiedian [] B = read(in); 		int root2=n1; 		boolean bool = istg(root1,A,root2,B); 		if(bool) 			System.out.println("Yes"); 		else 			System.out.println("No");  	}  	private static void print(Jiedian[] a) { 		// TODO Auto-generated method stub 		for(Jiedian jd:a) { 			System.out.println(jd.element+"  "+jd.left+"  "+jd.right); 		} 	}  	private static boolean istg(int root1, Jiedian[] a, int root2, Jiedian[] b) { 		// TODO Auto-generated method stub 		if(root1==-1&amp;&amp;root2==-1) 			return true; 		else if((root1==-1&amp;&amp;root2!=-1)||(root1!=-1&amp;&amp;root2==-1)) 			return false; 		else if (a[root1].element!=b[root2].element) 			return false; 		else if(istg(a[root1].left,a,b[root2].left,b)&amp;&amp;istg(a[root1].right,a,b[root2].right,b)) 			return true; 		else if(istg(a[root1].left,a,b[root2].right,b)&amp;&amp;istg(a[root1].right,a,b[root2].left,b)) 			return true; 		 		return false; 	}  	private static Jiedian [] read(Scanner in) { 		// TODO Auto-generated method stub //		Scanner in = new Scanner (System.in); 		 		int n = in.nextInt(); 		 		int check [] = new int[n]; 		for(int i = 0;i&lt;n;i++) { 			check[i]=-2; 		} 		 		Jiedian [] jd = new Jiedian[n]; 		 		 		for(int i=0; i&lt;n ; i++) { //			System.out.println(i); 			jd[i]=new Jiedian(); 			 			 			String str = in.next(); //			System.out.println(str); 			 			 			jd[i].element=str.charAt(0);  			 			str=in.next(); 			if(!str.equals("-")) 			{ 				int temp; 				temp=Integer.parseInt(str); 				jd[i].left=temp; 				check[temp]=temp;; 				 			} 			 			else 				jd[i].left=-1; 			 			str = in.next();  			if(!str.equals("-")) 			{ 				int temp; 				temp=Integer.parseInt(str); 				jd[i].right=temp; 				check[temp]=temp; 				 			} 				 			else 				jd[i].right=-1; 	 		} 		 寻找根节/ 		for(int i=0;i&lt;n;i++) 		{ 			if(check[i]==-2) 				{ 					n1=i; 					break; 				} 		} 		 		// 		 		return jd; 	} 	 }  class Jiedian{ 	public char element ; 	public int left ; 	public int right; 	 }</code></pre> <p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-98482.htm">不能养猫的人（不能养猫的人养猫了会怎么样）</a></p>
+                                        <p>下一个：<a href="/news/article-99273.htm">美容美体包括什么项目（美容美体包括什么项目好学吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-94853.htm" title="动物疫苗的作用原理和方法图片 动物疫苗的作用原理和方法图片大全">动物疫苗的作用原理和方法图片 动物疫苗的作用原理和方法图片大全</a></li>
+                        <li class="py-2"><a href="/news/article-78943.htm" title="猫咪打疫苗多少一针啊（猫咪打疫苗多少一针啊图片）">猫咪打疫苗多少一针啊（猫咪打疫苗多少一针啊图片）</a></li>
+                        <li class="py-2"><a href="/news/article-92572.htm" title="卖猫的市场（卖猫的市场视频）">卖猫的市场（卖猫的市场视频）</a></li>
+                        <li class="py-2"><a href="/news/article-94277.htm" title="沧州宠物服务平台（沧州宠物吧）">沧州宠物服务平台（沧州宠物吧）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-5-free-v2ray-subscribe.htm" title="VPN网关 | 4月5日19M/S|免费Shadowrocket/V2ray/SSR/Clash订阅节点">VPN网关 | 4月5日19M/S|免费Shadowrocket/V2ray/SSR/Clash订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-83844.htm" title="vuex几大模块和Vuex助手使用详解">vuex几大模块和Vuex助手使用详解</a></li>
+                        <li class="py-2"><a href="/news/article-75558.htm" title="宠物粮行业发展趋势图表（宠物粮食市场前景）">宠物粮行业发展趋势图表（宠物粮食市场前景）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-10-free-node-subscribe.htm" title="VPN网关 | 4月10日21.2M/S|免费SSR/V2ray/Shadowrocket/Clash订阅节点">VPN网关 | 4月10日21.2M/S|免费SSR/V2ray/Shadowrocket/Clash订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-90910.htm" title="开个宠物美容店需要多少钱,五线城市（开一家宠物美容店都需要一些什么）">开个宠物美容店需要多少钱,五线城市（开一家宠物美容店都需要一些什么）</a></li>
+                        <li class="py-2"><a href="/news/article-95590.htm" title="最新免费领养边牧 最新免费领养边牧视频">最新免费领养边牧 最新免费领养边牧视频</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">55</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about sectuion end -->
+        <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p class="copyright_text">
+                            VPN网关 VPN免费节点订阅官网 版权所有
+                            <br />
+                            Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery-3.0.0.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/plugin.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
