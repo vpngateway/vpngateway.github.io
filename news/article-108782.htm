@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+    	<link rel="canonical" href="https://vpngateway.github.io/news/article-108782.htm" />
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>vue实现简单评论功能</title>
+		<meta name="description" content="先看效果图吧！！！！ 1.添加一条信息 接下来让我们看代码吧！ 	&lt;style type="text/css"&gt; 			*{ 				padding: 0;margin: 0; 			} " />
+	
+    <meta name="author" content="VPN网关 VPN免费节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngateway.github.io/news/article-108782.htm" />
+    <meta property="og:site_name" content="VPN网关 VPN免费节点订阅官网" />
+    <meta property="og:title" content="vue实现简单评论功能" />
+    <meta property="og:image" content="https://vpngateway.github.io/uploads/20240323/67515d5613f54ad595999fa7d2110788.webp" />
+        <meta property="og:release_date" content="2025-05-01T09:03:04" />
+    <meta property="og:updated_time" content="2025-05-01T09:03:04" />
+        <meta property="og:description" content="先看效果图吧！！！！ 1.添加一条信息 接下来让我们看代码吧！ 	&lt;style type="text/css"&gt; 			*{ 				padding: 0;margin: 0; 			} " />
+        
+	<!-- bootstrap css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/bootstrap.min.css">
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="/assets/website/css/clashnodesfree/style.css">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/responsive.css">
+	<!-- favicon -->
+	<link rel="icon" href="/assets/website/img/clashnodesfree/favicon.ico" type="image/x-icon"/>
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" href="/assets/website/css/clashnodesfree/jquery.mCustomScrollbar.min.css">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+	<link rel="stylesheet" href="/assets/website/css/G.css" />
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue实现简单评论功能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-516RBJER8X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-516RBJER8X');
+</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- header section start -->
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+                        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="logo">
+                                        <a href="/">VPN网关</a>
+                                    </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                            </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- header section end -->
+    <!-- about sectuion start -->
+    <div class="about_section layout_padding">
+        <div class="container">
+            <div class="breadcrumb">
+              <a href="/">首页</a> / 
+              <a href="/news/">新闻资讯</a> / 
+              <span>正文</span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="services_taital mb-5">vue实现简单评论功能</h1>
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <p>先看效果图吧！！！！<br /> 1.添加一条信息<img decoding="async" src="http://img.555519.xyz/uploads/20230109/b6d10f8e2036e19cba7b02b3a43bcaa5.jpg" alt="vue实现简单评论功能"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230109/3ba807925fb846ae1f4fbcb3ff545790.jpg" alt="vue实现简单评论功能"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230109/dd3d68fd321a692e05bfc1aab0ec9043.jpg" alt="vue实现简单评论功能"><br /> 接下来让我们看代码吧！</p> <pre><code class="prism language-//样式">	&lt;style type="text/css"&gt; 			*{ 				padding: 0;margin: 0; 			} 			.box{ 				margin: 30px; 				width: 500px; 				height: 500px; 				display: flex; 			} 			p{ 				margin-top: 10px; 			} 			a{ 				text-decoration: none; 				float: right; 			} 			ul{ 				margin-left: 30px; 			} 			li{ 				width: 300px; 				white-space: nowrap; 				overflow: hidden; 				text-overflow: ellipsis; 				height: 50px; 				line-height: 50px; 				border:1px solid #CCCCCC; 				padding: 0 20px; 				list-style: none; 			} 			.speak{ 				margin-left: 30px; 			} 		&lt;/style&gt; 	&lt;/head&gt; 	&lt;body&gt; 	//html 		&lt;div class="box"&gt; 			&lt;div class="user"&gt; 			&lt;p&gt;用户名&lt;/p&gt; 			&lt;!-- @keyup监听键盘事件 --&gt; 			&lt;!-- @keyup.enter回车键获取值 --&gt; 			&lt;p&gt;&lt;input v-model.trim="user" @keyup.enter="addItem()" type="text" placeholder="用户名" /&gt;&lt;/p&gt; 			&lt;p&gt;吐槽内容&lt;/p&gt; 			&lt;p&gt;&lt;textarea v-model="comm" @keyup.enter="addItem()" placeholder="吐槽内容"&gt;&lt;/textarea&gt;&lt;/p&gt; 			&lt;p&gt;&lt;button type="button" @click="btn"&gt;提交&lt;/button&gt;&lt;/p&gt; 			&lt;/div&gt; 			 			 			&lt;div class="speak"&gt; 				&lt;p&gt;吐槽回复：&lt;/p&gt; 				&lt;ul v-for="(item,index) in list" :key="item.name"&gt; 					&lt;li&gt;{<!-- -->{item.name}}说：{<!-- -->{item.txt}}&lt;a href="#" @click="delItem(item)"&gt;删除&lt;/a&gt;&lt;/li&gt; 				&lt;/ul&gt; 			&lt;/div&gt; 		&lt;/div&gt; 		//js 		&lt;script type="text/javascript"&gt; 			new Vue({ 				el:".box", 				data(){ 					return{ 						// 评论用户以及内容的数据 						// name评论的用户名字 txt评论的内容 						list:[ 							{name:"tom",txt:"笑不活了"}, 							{name:"jarry",txt:"买了吧"}, 							{name:"小爱同学",txt:"可恶，有被装到"}, 							{name:"小一",txt:"鹅鹅鹅，曲项向天歌"} 						], 						user:"",//输入的名字存入 						comm:"",//评论存入 					} 				}, 				methods:{ 					// 点击按钮提交 					btn(){ 						var usercom={ 							name:this.user, 							txt:this.comm 						} 						this.list.unshift(usercom) 						this.user=""; 						this.comm=""; 					}, 					// 用户名方法事件 					addItem(){ 						// 创建用户名 						var item={ 							// 用户名字 						name:this.user, 						// 用户评论 						txt:this.comm, 						}; 						 						// 在list前面添加 item    unshift在前面添加 						this.list.unshift(item) 						 						// 清空user 						this.user=""; 						// 清空评论 						this.comm=""; 					}, 					//删除点击事件  获取元素 					delItem(item){ 						// 查找元素item在list里的下标 						var ind=this.list.findIndex(value=&gt;value.name==item.name); 						//删除 						// splice 功能（从第几个元素，删除几个 添加内容） 						this.list.splice(ind,1); 					} 				} 			}) 		&lt;/script&gt; </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-107959.htm">动物防疫站打疫苗贵吗现在（动物防疫站可以打疫苗吗）</a></p>
+                                        <p>下一个：<a href="/news/article-108783.htm">动物疫苗现状 动物疫苗现状分析</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-96343.htm" title="男生衣服牌子排行榜(男生衣服品牌大全)">男生衣服牌子排行榜(男生衣服品牌大全)</a></li>
+                        <li class="py-2"><a href="/news/article-91857.htm" title="啥属相不能养狗（哪个属相不能养狗）">啥属相不能养狗（哪个属相不能养狗）</a></li>
+                        <li class="py-2"><a href="/news/article-86702.htm" title="动物医院主管部门是谁负责（动物医院监管部门）">动物医院主管部门是谁负责（动物医院监管部门）</a></li>
+                        <li class="py-2"><a href="/news/article-94852.htm" title="动物疫苗厂家排名榜前十名有哪些呢（动物疫苗厂家排名榜前十名有哪些呢视频）">动物疫苗厂家排名榜前十名有哪些呢（动物疫苗厂家排名榜前十名有哪些呢视频）</a></li>
+                        <li class="py-2"><a href="/news/article-97803.htm" title="浅尝Spring注解开发_Bean生命周期及执行过程_在线工具">浅尝Spring注解开发_Bean生命周期及执行过程_在线工具</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-7-free-high-speed-nodes.htm" title="VPN网关 | 4月7日22.4M/S|免费Shadowrocket/SSR/V2ray/Clash订阅节点">VPN网关 | 4月7日22.4M/S|免费Shadowrocket/SSR/V2ray/Clash订阅节点</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-15-free-node-subscribe.htm" title="VPN网关 | 4月15日20.3M/S|免费V2ray/Shadowrocket/Clash/SSR订阅节点">VPN网关 | 4月15日20.3M/S|免费V2ray/Shadowrocket/Clash/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-108783.htm" title="动物疫苗现状 动物疫苗现状分析">动物疫苗现状 动物疫苗现状分析</a></li>
+                        <li class="py-2"><a href="/news/article-94853.htm" title="动物疫苗的作用原理和方法图片 动物疫苗的作用原理和方法图片大全">动物疫苗的作用原理和方法图片 动物疫苗的作用原理和方法图片大全</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-24-free-high-speed-nodes.htm" title="VPN网关 | 4月24日18.5M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点">VPN网关 | 4月24日18.5M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about sectuion end -->
+        <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p class="copyright_text">
+                            VPN网关 VPN免费节点订阅官网 版权所有
+                            <br />
+                            Powered by WordPress
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/popper.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/jquery-3.0.0.min.js"></script>
+    <script src="/assets/website/js/frontend/clashnodesfree/plugin.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
